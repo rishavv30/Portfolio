@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="text-align: center; padding: 100px 0;">
+    <div class="success-message">
+        <h1>Thank You!</h1>
+        <p>Your message has been sent successfully. I will get back to you soon.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+
+<style>
+.success-message {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+}
+
+.success-message h1 {
+    color: var(--success-color);
+    margin-bottom: 1rem;
+}
+
+.success-message p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+</style>
+{% endblock %}
