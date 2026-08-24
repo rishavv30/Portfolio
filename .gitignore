@@ -12,8 +12,9 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-# Static and media files (should be served from production storage)
-/static/
+# Collected/generated static output and user media (NOT the source static/ dir).
+# static/ holds hand-written CSS/JS/images and MUST be committed so Render can
+# run collectstatic during the build.
 /media/
 /staticfiles/
 /mediafiles/

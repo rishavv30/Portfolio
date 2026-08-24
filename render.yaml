@@ -1,0 +1,44 @@
+# Render Blueprint. Optional: you can configure the same values by hand in the
+# Render dashboard instead. See https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: portfolio
+    runtime: python
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn portfolio_project.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      # Render generates a strong random value and stores it as a secret.
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      # Django 4.2.7 officially supports Python up to 3.12.
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: WEB_CONCURRENCY
+        value: "2"
+      # ALLOWED_HOSTS does not need the .onrender.com domain: settings.py picks
+      # RENDER_EXTERNAL_HOSTNAME up automatically. Add your custom domain here
+      # if you attach one.
+      #
+      # Contact-form email. Set these in the dashboard (marked as secrets)
+      # rather than committing them:
+      #   EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, DEFAULT_FROM_EMAIL
+      #
+      # --- Optional: persistent database -------------------------------------
+      # Without this the app uses SQLite on the container's ephemeral disk, so
+      # contact submissions are LOST on every redeploy. To keep them, uncomment
+      # the databases block below and this variable.
+      # - key: DATABASE_URL
+      #   fromDatabase:
+      #     name: portfolio-db
+      #     property: connectionString
+
+# databases:
+#   - name: portfolio-db
+#     plan: free
+#     databaseName: portfolio
+#     user: portfolio

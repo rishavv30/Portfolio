@@ -26,7 +26,10 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
 ]
 
-# Serve static and media files during development
+# Static files need no route here: django.contrib.staticfiles serves
+# STATICFILES_DIRS automatically while DEBUG is on, and WhiteNoise serves the
+# collected STATIC_ROOT once it is off. Pointing STATIC_URL at STATIC_ROOT (as
+# this used to) shadows that with a directory that is empty until collectstatic
+# runs. Only user-uploaded media still needs a development route.
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
