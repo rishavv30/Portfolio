@@ -33,6 +33,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
     "rishav-raj-portfolio-three.vercel.app",
+    "rishav-raj-portfolio-git-main-rishav20.vercel.app",
+    "rishav-raj-portfolio-tigosip94-rishav20.vercel.app",
     "localhost",
     "127.0.0.1",
 ]
