@@ -32,11 +32,9 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-chang
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
-    ALLOWED_HOSTS = [
     "rishav-raj-portfolio-three.vercel.app",
     "localhost",
     "127.0.0.1",
-]
 ]
 
 CSRF_TRUSTED_ORIGINS = [
